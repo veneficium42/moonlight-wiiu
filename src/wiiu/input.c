@@ -227,8 +227,8 @@ void wiiu_input_update(void) {
         CHECKBTN(WPAD_CLASSIC_BUTTON_DOWN,    DOWN_FLAG);
         CHECKBTN(WPAD_CLASSIC_BUTTON_LEFT,    LEFT_FLAG);
         CHECKBTN(WPAD_CLASSIC_BUTTON_RIGHT,   RIGHT_FLAG);
-        CHECKBTN(WPAD_CLASSIC_BUTTON_ZL,      LB_FLAG);
-        CHECKBTN(WPAD_CLASSIC_BUTTON_ZR,      RB_FLAG);
+        CHECKBTN(WPAD_CLASSIC_BUTTON_L,      LB_FLAG);
+        CHECKBTN(WPAD_CLASSIC_BUTTON_R,      RB_FLAG);
         // don't have stick buttons on a classic controller
         // CHECKBTN(WPAD_CLASSIC_BUTTON_STICK_L, LS_CLK_FLAG);
         // CHECKBTN(WPAD_CLASSIC_BUTTON_STICK_R, RS_CLK_FLAG);
@@ -247,8 +247,8 @@ void wiiu_input_update(void) {
         }
 
         LiSendMultiControllerEvent(controllerNumber++, gamepad_mask, buttonFlags,
-          kpad_data.classic.leftTrigger * 0xFF,
-          kpad_data.classic.rightTrigger * 0xFF,
+          (kpad_data.classic.hold & WPAD_CLASSIC_BUTTON_ZL) ? 0xFF : 0x00,
+          (kpad_data.classic.hold & WPAD_CLASSIC_BUTTON_ZR) ? 0xFF : 0x00,
           kpad_data.classic.leftStick.x * INT16_MAX, kpad_data.classic.leftStick.y * INT16_MAX,
           kpad_data.classic.rightStick.x * INT16_MAX, kpad_data.classic.rightStick.y * INT16_MAX);
       }
